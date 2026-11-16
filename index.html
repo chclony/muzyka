@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Muzyka">
+<meta name="theme-color" content="#0d0d12">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="icons/icon-180.png">
+<link rel="icon" href="icons/icon-192.png">
+<link rel="stylesheet" href="style.css">
+<title>Muzyka</title>
+</head>
+<body>
+<div id="app">
+  <header id="topbar"><button id="back" class="ib" data-act="back" hidden aria-label="Wstecz"></button><h1 id="title">Muzyka</h1></header>
+  <main id="view"></main>
+  <div id="mini" hidden>
+    <div class="mini-main" data-act="openPlayer">
+      <img id="mini-cover" alt="" onerror="this.onerror=null;this.src=BLANK">
+      <div class="meta"><b id="mini-title"></b><small id="mini-artist"></small></div>
+    </div>
+    <button class="ib big" id="mini-play" data-act="toggle" aria-label="Odtwarzaj/pauza"></button>
+    <button class="ib" data-act="next" id="mini-next" aria-label="Następny"></button>
+    <div class="mini-bar"><i id="mini-prog"></i></div>
+  </div>
+  <nav id="tabs">
+    <button data-tab="home"></button>
+    <button data-tab="search"></button>
+    <button data-tab="radio"></button>
+    <button data-tab="library"></button>
+  </nav>
+</div>
+
+<section id="player" hidden>
+  <div class="p-head"><button class="ib" data-act="closePlayer" id="p-close" aria-label="Zamknij"></button><span>Teraz odtwarzane</span><button class="ib" data-act="playerMore" id="p-more" aria-label="Więcej"></button></div>
+  <div class="p-body">
+    <img id="p-cover" alt="" onerror="this.onerror=null;this.src=BLANK">
+    <div class="p-info">
+      <div class="meta"><b id="p-title"></b><small id="p-artist" data-act="playerArtist"></small></div>
+      <button class="ib" id="p-fav" data-act="playerFav" aria-label="Ulubione"></button>
+    </div>
+    <div class="p-seek">
+      <input type="range" id="p-range" min="0" max="1000" value="0" step="1">
+      <div class="p-times"><span id="p-cur">0:00</span><span id="p-dur">0:00</span></div>
+    </div>
+    <div class="p-skip" id="p-skip" hidden>
+      <button class="btn" data-act="skipBack">⟲ 15 s</button>
+      <button class="btn" data-act="rate" id="p-rate">1×</button>
+      <button class="btn" data-act="skipFwd">30 s ⟳</button>
+    </div>
+    <div class="p-ctrl">
+      <button class="ib" id="p-shuffle" data-act="shuffle" aria-label="Losowo"></button>
+      <button class="ib lg" id="p-prev" data-act="prev" aria-label="Poprzedni"></button>
+      <button class="ib play" id="p-play" data-act="toggle" aria-label="Odtwarzaj/pauza"></button>
+      <button class="ib lg" id="p-next" data-act="next" aria-label="Następny"></button>
+      <button class="ib" id="p-repeat" data-act="repeat" aria-label="Powtarzaj"></button>
+    </div>
+    <div class="p-queue-h"><b>Kolejka</b><small id="p-status"></small></div>
+    <div id="p-queue"></div>
+  </div>
+</section>
+
+<div id="modal" hidden></div>
+<div id="toast" hidden></div>
+<audio id="audio" playsinline preload="auto"></audio>
+<script type="module" src="app.js"></script>
+</body>
+</html>
